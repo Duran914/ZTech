@@ -15,6 +15,7 @@ before_install:
 
 deploy:
   on: master
-  provider: gce
+  provider: gae
   keyfile: testing-jd-6c36f3a4bd4a.json
   project: testing-199406
+  default: true
