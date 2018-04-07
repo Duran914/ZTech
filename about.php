@@ -31,7 +31,7 @@
         <h3>What We Do</h3>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
           Donec varius auctor lacus nec feugiat. Phasellus sit amet ex ipsum.
-          Praesent pharetra tincidunt tempor. Etiam velit eros,
+          Praesent pharetrafdnji tincijdsdunt tempor. Etiam velit eros,
           dapibus eget porta in, lacinia et magna</p>
         </aside>
         <br><br><br>
