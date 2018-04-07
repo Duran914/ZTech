@@ -9,8 +9,10 @@ env:
 before_script: composer require atoum/atoum
 script: vendor/bin/atoum
 deploy:
+  on:
+    master
   provider: gae
-  keyfile: 
+  keyfile: testing-jd-959e9a2500ab.json
   project: testing-199406
 before_install:
 - openssl aes-256-cbc -K $encrypted_943c18221300_key -iv $encrypted_943c18221300_iv
