@@ -22,5 +22,5 @@ script: vendor/bin/atoum
 
 deploy:
   provider: gae
-  keyfile: testing-jd-689622b0ea4e.json.enc
+  keyfile: testing-jd-30b53d16f328.p12
   project: testing-199406
