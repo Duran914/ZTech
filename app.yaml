@@ -1,2 +1,4 @@
 runtime: custom
-env: flex
+vm: true
+api_version: 1
+module: default
