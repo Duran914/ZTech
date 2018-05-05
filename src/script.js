@@ -94,3 +94,67 @@ function contactValidate(){
     return false;
   }
 }
+
+//******** YELP CODE */
+// yelp zipcode search input
+const searchZipBtn = document.querySelector('#yelpForm');
+
+searchZipBtn.addEventListener('submit', (e) => {
+  // will migrate css in dedicated css file in actual project
+  if (document.querySelector('#zipcode').value === '') {
+   document.querySelector('#error').style.display = 'block';
+    document.querySelector('#error').style.backgroundColor = 'red';
+     document.querySelector('#error').style.width = '200px';
+      document.querySelector('#error').style.padding = '5px';
+       document.querySelector('#error').style.color = 'white';
+        document.querySelector('#error').innerHTML = "Please enter a vaild city or zipcode";
+  }else{
+  document.querySelector('#error').style.display = "none";
+   document.querySelector('#loading').style.display = 'block';
+    document.querySelector('#results').innerHTML = '';
+     queryBrewsResults();
+  }
+e.preventDefault();
+});
+
+function queryBrewsResults(e) {
+const zipCode = document.querySelector('#zipcode').value;
+const radius = document.querySelector('input[name="mi"]:checked').value * 1609.344; //convert meters to miles
+ let xhttp = new XMLHttpRequest;
+  xhttp.open("GET", `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?categories=breweries&limit=20&location=${zipCode}&distance=${radius}`, true)
+   xhttp.setRequestHeader("Authorization", "Bearer " + yelpApiKey);
+    xhttp.onreadystatechange = function(){
+      if(this.readyState === 4 && this.status === 200){
+        const data = JSON.parse(this.responseText);
+        let brews = data.businesses;
+        let output = '';
+          for (let i = 0; i < brews.length; i++) {
+            output += `<div class="searchedReturn">
+            <img class="yelpImg" src='${brews[i].image_url}'><br>
+            <strong>Brewery Name:</strong> <i class="fas fa-beer"></i> ${brews[i].name}<br>
+            <strong>Location:</strong> <i class="fas fa-map-marker"></i> ${brews[i].location.address1}, 
+            ${brews[i].location.city} ${brews[i].location.state}<br>
+            <strong>Phone Number:</strong> <i class="fas fa-phone"></i> ${brews[i].phone}<br>
+            <strong>Price Range:</strong> <i class="far fa-credit-card"></i> ${brews[i].price}<br>
+            <strong>Rating:</strong> <i class="fas fa-star"></i> ${brews[i].rating}/5<br>
+            <strong>View on Yelp:</strong> <i class="fas fa-yelp"></i> <a href="${brews[i].url}">Click Me</a><br>
+            </div><br>
+            `;
+          }
+       document.querySelector('#error').style.display = 'none';
+       document.querySelector('#loading').style.display = 'none';
+       document.querySelector('#results').innerHTML = output;
+      clearFields(zipCode);
+       }
+       else {
+        document.querySelector('#error').style.display = "block";
+        document.querySelector('#error').innerHTML = "No brewery found!";
+        document.querySelector('#loading').style.display = 'none';
+       }  
+    }
+    xhttp.send();
+  }
+
+  clearFields = (zipCode) => {
+    zipCode = '';
+  }
