@@ -43,6 +43,24 @@
          Vivamus mi augue, viverra sit amet ultricies</p>
     </div>
   </section>
+
+      <section class="yelp">
+    <h2>Search For Brewery</h2>
+    <form action="" id="yelpForm">
+    <div id="error"></div><br>
+    <label for="zip">Enter a city or zipcode</label><br>
+    <input type="text" id='zipcode'><br>
+    <h4>Distance from</h4>
+    <input type="radio" class="milesRad" name="mi" id="5mi" value=5 checked>5 miles
+    <input type="radio" class="milesRad" name="mi" id="10mi" value=10 >10 Miles
+    <input type="radio" class="milesRad" name="mi" id="15mi" value=15 >15 Miles <br>
+    <input type="submit" id="yelp-search" value="Search">
+    </form>
+    <div id="loading">
+        <img src="img/beer.gif" alt="">
+      </div>
+    <div id="results"></div>
+    </section>
   
 <?php include 'inc/footer.php'; ?>
 
